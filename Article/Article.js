@@ -85,6 +85,12 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  }, {
+    title: 'Learning Components',
+    date: 'May 3rd, 2020',
+    firstParagraph: "Enjoyed Gab's morning lecture on Components. Especially enjoyed the guided project.",
+    secondParagraph: "Now working on the afternoon project! Excited with what I'm learning at Lambda School.",
+    thirdParagraph: "Can't wait to see what next week holds!"
   }
 ];
 
