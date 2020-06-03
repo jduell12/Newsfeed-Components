@@ -174,6 +174,7 @@ function articleMaker(articleObj){
 function componentConstructor(){
   //creates elements for the component constructor
   let componentDiv = document.createElement('div');
+  let h2 = document.createElement('h2');
   let titleName = document.createElement('h3');
   let titleInput = document.createElement('input');
   let dateName = document.createElement('h3');
@@ -185,17 +186,21 @@ function componentConstructor(){
   let p3Name = document.createElement('h3');
   let p3Input = document.createElement('input');
   let submit = document.createElement('button');
+  let breakItem = document.createElement('br');
 
   let inputs = [titleInput, dateInput, p1Input, p2Input, p3Input];
   
-  let elements = [titleName, titleInput, dateName, dateInput, p1Name, p1Input, p2Name, p2Input, p3Name, p3Input, submit];
+  let elements = [h2, titleName, titleInput, dateName, dateInput, p1Name, p1Input, p2Name, p2Input, p3Name, p3Input, breakItem, submit];
 
   //makes the inputs text inputs
   inputs.forEach(item => {item.setAttribute('type', 'text')});
 
   //adds classes to appropiate elements 
+  componentDiv.classList.add('component');
+  submit.classList.add('submit');
 
   //adds required text for appropiate elements
+  h2.textContent = "Add a new article to the page!"
   titleName.textContent = "Enter the title of the article: ";
   dateName.textContent = "Enter the article date: ";
   p1Name.textContent = "Enter the first paragraph: ";
@@ -205,6 +210,31 @@ function componentConstructor(){
 
   //appends each element to the component div
   elements.forEach(item => componentDiv.appendChild(item));
+
+  //creates event listener for submit button
+  submit.addEventListener('click', event => {
+    //gets the values from the inputs and then erases the value to reset the component div
+    let titleI = titleInput.value;
+    titleInput.value = "";
+
+    let dateI = dateInput.value;
+    dateInput.value = "";
+
+    let p1I = p1Input.value;
+    p1Input.value = "";
+
+    let p2I = p2Input.value;
+    p2Input.value = "";
+
+    let p3I = p3Input.value;
+    p3Input.value = "";
+
+    let articleComponents = {title: titleI, date: dateI, firstParagraph: p1I, secondParagraph: p2I, thirdParagraph: p3I }
+
+    let items = [titleI, dateI, p1I, p2I, p3I];
+
+    items.forEach(item => console.log(item));
+  })
   
   return componentDiv;
 }
