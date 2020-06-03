@@ -163,7 +163,6 @@ function articleMaker(articleObj){
 
   //add event listener to closeBtn that when pressed will hide the article
   closeBtn.addEventListener('click', event => {
-    console.log(article);
     article.style.display = 'none';
   });
 
@@ -231,11 +230,12 @@ function componentConstructor(){
 
     let articleComponents = {title: titleI, date: dateI, firstParagraph: p1I, secondParagraph: p2I, thirdParagraph: p3I }
 
-    let items = [titleI, dateI, p1I, p2I, p3I];
+    let articleDiv = document.querySelector('.articles');
+    let inputArticle = articleMaker(articleComponents);
+    articleDiv.appendChild(inputArticle);
 
-    items.forEach(item => console.log(item));
-  })
-  
+  });
+
   return componentDiv;
 }
 
@@ -246,5 +246,5 @@ data.forEach(item => {
 articleDiv.appendChild(article);
 })
 
-let newArticle = componentConstructor();
-articleDiv.appendChild(newArticle);
+let components = componentConstructor();
+document.body.appendChild(components);

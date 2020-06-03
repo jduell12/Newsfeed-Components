@@ -116,6 +116,9 @@
   font-size: 18px;
   align-self: center;
 }
+.new {
+  order: -1;
+}
 .menu-button {
   position: absolute;
   left: 20px;
