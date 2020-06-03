@@ -127,12 +127,14 @@ function articleMaker(articleObj){
   let p2 = document.createElement('p');
   let p3 = document.createElement('p');
   let span = document.createElement('span');
+  let closeBtn = document.createElement('span');
   
 
   //add appropiate classes to each element 
   article.classList.add('article');
   date.classList.add('date');
   span.classList.add('expandButton');
+  closeBtn.classList.add('readButton');
 
   //add content to each element
   title.textContent = articleObj.title;
@@ -141,11 +143,15 @@ function articleMaker(articleObj){
   p2.textContent = articleObj.secondParagraph;
   p3.textContent = articleObj.thirdParagraph;
   span.textContent = 'Click to Open';
-
+  closeBtn.textContent = 'Article Read';
+  console.log(closeBtn);
 
   //append the elements together based on instructions
-  let elements = [title, date, p1, p2, p3, span];
-  elements.forEach(item => article.appendChild(item));
+  let elements = [title, date, p1, p2, p3, closeBtn, span];
+  elements.forEach(item => {
+    article.appendChild(item);
+    // console.log(item);
+  });
   
   //add event listener to expandButton span 
   span.addEventListener('click', event => {
@@ -155,7 +161,7 @@ function articleMaker(articleObj){
   return article;
 }
 
-//put each article on the web
+//put each article on the webpage
 let articleDiv = document.querySelector('.articles');
 data.forEach(item => {
   let article = articleMaker(item);
