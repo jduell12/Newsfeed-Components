@@ -144,19 +144,28 @@ function articleMaker(articleObj){
   p3.textContent = articleObj.thirdParagraph;
   span.textContent = 'Click to Open';
   closeBtn.textContent = 'Article Read';
-  console.log(closeBtn);
 
   //append the elements together based on instructions
   let elements = [title, date, p1, p2, p3, closeBtn, span];
   elements.forEach(item => {
     article.appendChild(item);
-    // console.log(item);
   });
   
   //add event listener to expandButton span 
   span.addEventListener('click', event => {
     article.classList.toggle('article-open');
+    if(event.target.textContent === 'Click to Open'){
+      event.target.textContent = 'Click to Close';
+    } else {
+      event.target.textContent = 'Click to Open';
+    }
   })
+
+  //add event listener to closeBtn that when pressed will hide the article
+  closeBtn.addEventListener('click', event => {
+    console.log(article);
+    article.style.display = 'none';
+  });
 
   return article;
 }
