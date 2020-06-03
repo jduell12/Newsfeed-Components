@@ -170,9 +170,51 @@ function articleMaker(articleObj){
   return article;
 }
 
+//component constructor 
+function componentConstructor(){
+  //creates elements for the component constructor
+  let componentDiv = document.createElement('div');
+  let titleName = document.createElement('h3');
+  let titleInput = document.createElement('input');
+  let dateName = document.createElement('h3');
+  let dateInput = document.createElement('input');
+  let p1Name = document.createElement('h3');
+  let p1Input = document.createElement('input');
+  let p2Name = document.createElement('h3');
+  let p2Input = document.createElement('input');
+  let p3Name = document.createElement('h3');
+  let p3Input = document.createElement('input');
+  let submit = document.createElement('button');
+
+  let inputs = [titleInput, dateInput, p1Input, p2Input, p3Input];
+  
+  let elements = [titleName, titleInput, dateName, dateInput, p1Name, p1Input, p2Name, p2Input, p3Name, p3Input, submit];
+
+  //makes the inputs text inputs
+  inputs.forEach(item => {item.setAttribute('type', 'text')});
+
+  //adds classes to appropiate elements 
+
+  //adds required text for appropiate elements
+  titleName.textContent = "Enter the title of the article: ";
+  dateName.textContent = "Enter the article date: ";
+  p1Name.textContent = "Enter the first paragraph: ";
+  p2Name.textContent = "Enter the second paragraph: ";
+  p3Name.textContent = "Enter the third paragraph: ";
+  submit.textContent = "Submit";
+
+  //appends each element to the component div
+  elements.forEach(item => componentDiv.appendChild(item));
+  
+  return componentDiv;
+}
+
 //put each article on the webpage
 let articleDiv = document.querySelector('.articles');
 data.forEach(item => {
   let article = articleMaker(item);
 articleDiv.appendChild(article);
 })
+
+let newArticle = componentConstructor();
+articleDiv.appendChild(newArticle);
