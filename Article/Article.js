@@ -85,6 +85,12 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  }, {
+    title: 'Learning Components',
+    date: 'May 3rd, 2020',
+    firstParagraph: "Enjoyed Gab's morning lecture on Components. Especially enjoyed the guided project.",
+    secondParagraph: "Now working on the afternoon project! Excited with what I'm learning at Lambda School.",
+    thirdParagraph: "Can't wait to see what next week holds!"
   }
 ];
 
@@ -111,3 +117,134 @@ const data = [
 
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 */
+
+function articleMaker(articleObj){
+  //create the elements needed for article
+  let article = document.createElement('div');
+  let title = document.createElement('h2');
+  let date = document.createElement('p');
+  let p1 = document.createElement('p');
+  let p2 = document.createElement('p');
+  let p3 = document.createElement('p');
+  let span = document.createElement('span');
+  let closeBtn = document.createElement('span');
+  
+
+  //add appropiate classes to each element 
+  article.classList.add('article');
+  date.classList.add('date');
+  span.classList.add('expandButton');
+  closeBtn.classList.add('readButton');
+
+  //add content to each element
+  title.textContent = articleObj.title;
+  date.textContent = articleObj.date;
+  p1.textContent = articleObj.firstParagraph;
+  p2.textContent = articleObj.secondParagraph;
+  p3.textContent = articleObj.thirdParagraph;
+  span.textContent = 'Click to Open';
+  closeBtn.textContent = 'Article Read';
+
+  //append the elements together based on instructions
+  let elements = [title, date, p1, p2, p3, closeBtn, span];
+  elements.forEach(item => {
+    article.appendChild(item);
+  });
+  
+  //add event listener to expandButton span 
+  span.addEventListener('click', event => {
+    article.classList.toggle('article-open');
+    if(event.target.textContent === 'Click to Open'){
+      event.target.textContent = 'Click to Close';
+    } else {
+      event.target.textContent = 'Click to Open';
+    }
+  })
+
+  //add event listener to closeBtn that when pressed will hide the article
+  closeBtn.addEventListener('click', event => {
+    article.style.display = 'none';
+  });
+
+  return article;
+}
+
+//component constructor 
+function componentConstructor(){
+  //creates elements for the component constructor
+  let componentDiv = document.createElement('div');
+  let h2 = document.createElement('h2');
+  let titleName = document.createElement('h3');
+  let titleInput = document.createElement('input');
+  let dateName = document.createElement('h3');
+  let dateInput = document.createElement('input');
+  let p1Name = document.createElement('h3');
+  let p1Input = document.createElement('input');
+  let p2Name = document.createElement('h3');
+  let p2Input = document.createElement('input');
+  let p3Name = document.createElement('h3');
+  let p3Input = document.createElement('input');
+  let submit = document.createElement('button');
+  let breakItem = document.createElement('br');
+
+  let inputs = [titleInput, dateInput, p1Input, p2Input, p3Input];
+  
+  let elements = [h2, titleName, titleInput, dateName, dateInput, p1Name, p1Input, p2Name, p2Input, p3Name, p3Input, breakItem, submit];
+
+  //makes the inputs text inputs
+  inputs.forEach(item => {item.setAttribute('type', 'text')});
+
+  //adds classes to appropiate elements 
+  componentDiv.classList.add('component');
+  submit.classList.add('submit');
+
+  //adds required text for appropiate elements
+  h2.textContent = "Add a new article to the page!"
+  titleName.textContent = "Enter the title of the article: ";
+  dateName.textContent = "Enter the article date: ";
+  p1Name.textContent = "Enter the first paragraph: ";
+  p2Name.textContent = "Enter the second paragraph: ";
+  p3Name.textContent = "Enter the third paragraph: ";
+  submit.textContent = "Submit";
+
+  //appends each element to the component div
+  elements.forEach(item => componentDiv.appendChild(item));
+
+  //creates event listener for submit button
+  submit.addEventListener('click', event => {
+    //gets the values from the inputs and then erases the value to reset the component div
+    let titleI = titleInput.value;
+    titleInput.value = "";
+
+    let dateI = dateInput.value;
+    dateInput.value = "";
+
+    let p1I = p1Input.value;
+    p1Input.value = "";
+
+    let p2I = p2Input.value;
+    p2Input.value = "";
+
+    let p3I = p3Input.value;
+    p3Input.value = "";
+
+    let articleComponents = {title: titleI, date: dateI, firstParagraph: p1I, secondParagraph: p2I, thirdParagraph: p3I }
+
+    let articleDiv = document.querySelector('.articles');
+    let inputArticle = articleMaker(articleComponents);
+    articleDiv.appendChild(inputArticle);
+
+  });
+
+  return componentDiv;
+}
+
+//put each article on the webpage
+let articleDiv = document.querySelector('.articles');
+data.forEach(item => {
+  let article = articleMaker(item);
+articleDiv.appendChild(article);
+})
+
+let components = componentConstructor();
+document.body.appendChild(components);
